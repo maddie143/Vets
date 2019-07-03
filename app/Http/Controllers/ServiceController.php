@@ -9,8 +9,19 @@ use Illuminate\Support\Facades\Input;
 
 class ServiceController extends Controller
 {
-    public function showAllServicesPage(){
-        return view('search_services');
+    public function showAllServicesPage(Request $request, Service $model){
+        $query = $model->newQuery();
+
+        $search = $request->get("search");
+
+        if (!is_null($search) && 0 < strlen($search)) {
+            $query = $query->where("name", "like", "%" . $search . "%");
+        }
+        $query->orderBy("name", "ASC");
+
+        return view('search_services', [
+            'services' => $query->get()
+        ]);
     }
     public function showAddAppointmentPage(){
         $vets = Admin::all();

@@ -41,10 +41,16 @@
         </div>
         <div class="row justify-content-center align-items-center" style="margin:5px 0;">
             <div class="col-10 col-sm-8 col-md-4 p-0 justify-content-center d-flex align-items-center" style="position: relative; height:50px;">
-                <input type="text" class=""  id="searchPlaceholder" placeholder="Search by name" style="width:100%;padding:0 5%;height:100%;border:none; outline:none; border-bottom:1px solid #BF6B63; border-right:1px solid #BF6B63" />
-                <button id="filterButton" class="d-flex justify-content-center align-items-center search-icon" style="position:absolute;height:100%; right:0 " >
-                    <i class="fas fa-search search-icon" style="font-size:20px;margin:0 10px;"></i>
-                </button>
+
+                <form method="get" action="{{ route("show_all_service") }}">
+                    <input type="text" name="search" class="" id="searchPlaceholder" placeholder="Search by name" style="width:100%;padding:0 5%;height:100%;border:none; outline:none; border-bottom:1px solid #BF6B63; border-right:1px solid #BF6B63" />
+
+                    <button id="filterButton" type="submit" class="d-flex justify-content-center align-items-center search-icon" style="position:absolute;height:100%; right:0 " >
+                        <i class="fas fa-search search-icon" style="font-size:20px;margin:0 10px;"></i>
+                    </button>
+
+                </form>
+
             </div>
         </div>
         <div class="row justify-content-center align-items-center" style="margin:5px 0;">
