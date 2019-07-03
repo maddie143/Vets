@@ -249,13 +249,13 @@
                                 <div class="col-10" style="margin:2px 0;height:fit-content;">
                                     <div class="row m-0 justify-content-center align-items-center" style="height:100px;background-color:#40BA93">
                                         <div class="col-6">
-                                            <input type="text" readonly value="{{ $service->name }}" style="width:50px;background-color: transparent; border:none; color:black" />
+                                            <input type="text" rel="name-{{ $service->id }}" readonly value="{{ $service->name }}" style="width:50px;background-color: transparent; border:none; color:black" />
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" readonly value="{{ $service->pivot->price }}"  style="width:50px;background-color: transparent; border:none; color:black" />
+                                            <input type="text" rel="price-{{ $service->id }}" readonly value="{{ $service->pivot->price }}"  style="width:50px;background-color: transparent; border:none; color:black" />
                                         </div>
-                                        <button id="modifyService" class="col-2" style="border:none; background-color:transparent; color:white;">Modifica</button>
-                                        <button id="deleteService" class="col-2" style="border:none; background-color:transparent; color:white;">Sterge</button>
+                                        <button rel="{{ $service->id }}" class="modifyService col-2" style="border:none; background-color:transparent; color:white;">Modifica</button>
+                                        <a rel="{{ $service->id }}" class="deleteService col-2" style="border:none; background-color:transparent; color:white;">Sterge</a>
 
                                     </div>
                                 </div>
@@ -654,6 +654,14 @@
             appointment.addClass('d-none');
         }
     })
+
+
+    $(function () {
+        $(".modifyService").click(function () {
+            $("price-" . $(this).attr("rel")).removeAttr('readonly');
+            $("name-" . $(this).attr("rel")).removeAttr('readonly');
+        })
+    });
 </script>
 </body>
 </html>
