@@ -16,10 +16,8 @@ class FilterByService extends FilterByCity
         $query   = $this->query;
 
         if (!is_null($service)) {
-            $query = $query->whereHas("user", function ($q) use ($service) {
-                return $q->whereHas("services", function ($servicesQuery) use ($service) {
-                    return $servicesQuery->whereIn("id", [intval($service)]);
-                });
+            $query = $query->whereHas("services", function ($servicesQuery) use ($service) {
+                return $servicesQuery->whereIn("services.id", [intval($service)]);
             });
         }
 

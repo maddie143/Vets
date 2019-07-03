@@ -19,7 +19,7 @@ class FilterByCounty
      */
     protected $filters;
 
-    public function __construct(Query $query, array $filters)
+    public function __construct($query, array $filters)
     {
         $this->query = $query;
         $this->filters = $filters;

@@ -61,7 +61,7 @@
                 <div class="row w-100 justify-content-center align-items-center m-0">
                     <div class="col-12 col-sm-11 d-flex form-group justify-content-center align-items-center" style="margin:1px 0;">
                         <select class="custom-select-sm form-control col-8 " id="select_county" style="" name="county">
-                            <option selected>Select a county</option>
+                            <option value="">Select a county</option>
                             <option value="Brasov">Brasov</option>
                             <option value="Cluj">Cluj</option>
                             <option value="Ilfov">Ilfov</option>
@@ -70,14 +70,14 @@
                     </div>
                     <div class="col-12 col-sm-11  d-flex form-group justify-content-center align-items-center" style="margin:1px 0;">
                         <select class="custom-select-sm form-control col-8 " id="select_city" style="" name="city">
-                            <option selected>Select a city</option>
+                            <option value="">Select a city</option>
                             <option value="Cluj-Napoca">Cluj-Napoca</option>
                             <option value="Bucuresti">Bucuresti</option>
                         </select>
                     </div>
                     <div class="col-12 col-sm-11 d-flex form-group justify-content-center align-items-center" style="margin:1px 0;">
                         <select class="custom-select-sm form-control col-8 " id="select_service" style="" name="service">
-                            <option selected>Select a service</option>
+                            <option value="">Select a service</option>
                             <option value="1">Serviciul 1</option>
                             <option value="2">Serviciul 2</option>
                             <option value="3">Serviciul 3</option>
@@ -268,6 +268,12 @@
                     $("#filterName").val($("#searchPlaceholder").val());
                     $('#filterForm').submit();
                 }
+            });
+
+            $("#filterForm").submit(function () {
+                $("#filterName").val($("#searchPlaceholder").val());
+
+                return true;
             });
         });
     </script>
