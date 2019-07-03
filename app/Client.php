@@ -11,4 +11,9 @@ class Client extends Model
     public function animals(){
         return $this->hasMany(Animal::class, 'client_id');
     }
+
+    public function appointments(){
+        return $this->hasMany(Appointment::class, 'client_id');
+    }
+
 }

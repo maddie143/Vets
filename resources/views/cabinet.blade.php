@@ -29,7 +29,7 @@
     <div class="col-12 p-0 first-impact " style="margin:20px 0;">
         <div class="row m-0 p-0 w-100 justify-content-center align-items-center">
             <div class="col-8 d-flex justify-content-center align-items-center" style="padding:10px;border-bottom:1px solid black;">
-                <h2>Cabinet name</h2>
+                <h2>{{ $vet->user->name }}</h2>
             </div>
         </div>
         <table id="emergency" class="row m-0 p-0 w-100 justify-content-center align-items-center" >

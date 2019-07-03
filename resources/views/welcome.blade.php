@@ -149,7 +149,7 @@
                         <a href="{{ route('add_appointment') }}" class="menu-text" style="text-decoration: none">PROGRAMARI</a>
                     </div>
                     <div class="col-10 m-0 p-0 d-flex justify-content-center align-items-center menu-option" style="">
-                        <a href="#" class="menu-text" style="text-decoration: none">URGENTE</a>
+                        <a href="{{ route('show_emergency') }}" class="menu-text" style="text-decoration: none">URGENTE</a>
                     </div>
                     <div class="col-10 m-0 p-0 d-flex justify-content-center align-items-center menu-option" style="">
                         <a href="{{ route('show_login') }}" class="menu-text" style="text-decoration: none">CONT</a>

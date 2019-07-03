@@ -53,6 +53,13 @@ class VetController extends Controller
         ]);
     }
 
+    public function showEmergency(){
+        $vets = Admin::where('emergency',true)->get();
+        return view('emergency',[
+            'vets' => $vets
+        ]);
+    }
+
 
 
     //

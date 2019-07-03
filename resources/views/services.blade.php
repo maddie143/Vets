@@ -28,54 +28,37 @@
 <div class="row container-fluid m-0 p-0 " style="position:relative;background-color:#F2F0F0; height:100vh">
     <div class="col-12 p-0 first-impact d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="row m-0 p-0 w-100 h-100 justify-content-center align-items-center">
-            <form action="{{ route('process_appointment') }}" method="post" class="col-12 col-sm-10 col-m-8 col-lg-6 p-0" style=" min-height:50%; border-radius:3px;background-color: #D96C6C; ">
+            <form action="{{ route('add_service') }}" method="post" class="col-12 col-sm-10 col-m-8 col-lg-6 p-0" style=" min-height:50%; border-radius:3px;background-color: #40BA93; ">
                 {{ csrf_field() }}
                 <div class="row h-100 w-100 justify-content-center align-items-center m-0">
-
+                    @if($errors->count() )
+                        {{ $errors->first('registeringWithError') }}
+                        {{ $errors->first('registeringSuccess') }}
+                    @endif
                     <div class="col-12 d-flex justify-content-center align-items-center">
-                        <h5 style="margin: 40px 0;color:white;font-family: 'Major Mono Display', monospace;">maKE an aPPOInmEnT</h5>
+                        <h5 style="margin: 40px 0;color:white;font-family: 'Major Mono Display', monospace;">add a sErViCE</h5>
                     </div>
-                    <div class="col-12 col-sm-10 col-m-8 d-flex form-group justify-content-center align-items-center" style="margin:3px 0">
-                        <select name="pet" id="pet" class="w-100" style="height:50px;border-radius:.25em; text-align:center">
-                            <option>Please select your pet</option>
-                            @foreach($animals as $animal)
-                                <option value="{{ $animal->id }}">{{ $animal->name }}</option>
+                    <div class="col-12 col-sm-10 col-m-8 d-flex form-group justify-content-center align-items-center" style="height:50px;margin:3px 0">
+                        <select name="service_combo" class="w-100 h-100">
+                            <option>Alegeti un serviciu</option>
+                            @foreach($services as $service)
+                                <option value="{{ $service->id }}">{{ $service->name }}</option>
                             @endforeach
-                        </select>
-                    </div>
-                    <div class="col-12 col-sm-10 col-m-8 d-flex form-group justify-content-center align-items-center" style="margin:3px 0">
-
-                        <select name="vet" id="vetSelect" class="w-100" style="height:50px;border-radius:.25em; text-align:center">
-                            <option>Please select a vet</option>
-                            @foreach( $vets as $vet)
-                                <option value="{{ $vet->id }}">{{ $vet->user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-12 col-sm-10 col-m-8 d-flex form-group justify-content-center align-items-center" style="margin:3px 0">
-                        <select name="service" id="serviceVet" class="w-100" style="height:50px;border-radius:.25em; text-align:center">
-                            <option>Please select a service</option>
 
                         </select>
                     </div>
-                    <div class="col-12 col-sm-10 col-m-8 d-flex form-group justify-content-center align-items-center" style="margin:3px 0">
-                        <input type="date" class="form-control" id="data" name="data" style="height:50px;text-align:center;">
+                    <div class="col-12 col-sm-10 col-m-8 d-flex form-group justify-content-center align-items-center" style="height:50px;margin:3px 0">
+                        <input type="text" class="row w-100 h-100" name="service" id="service" placeholder="Adaugati un serviciu nou"/>
                     </div>
                     <div class="col-12 col-sm-10 col-m-8 d-flex form-group justify-content-center align-items-center" style="margin:3px 0">
-                        <input type="text" class="form-control" id="hour" name="hour" placeholder="12:30 PM" style="height:50px;text-align:center;">
+                        <input type="text" class="form-control " id="price" name="price" placeholder="Please enter the price" style="height:50px;text-align:center;">
                     </div>
-                    {{--<div class="col-12 col-sm-10 col-m-8 d-flex form-group justify-content-center align-items-center" style="margin:3px 0">--}}
-                        {{--<input type="text" class="form-control" id="medic" name="medic" placeholder="Medic name (optional)" style="height:50px;text-align:center;">--}}
-                    {{--</div>--}}
 
                     <div class="col-12 col-sm-10 col-m-8" style="padding:20px;">
                         <div class="row m-0 h-100 w-100 justify-content-center align-items-center">
-                            <button type="submit" class="btn btn-primary w-100 col-6" style="border:none;height:70px;color:black;background-color:#F2F0F0; font-size:16px;text-align:center;">Adauga programarea</button>
+                            <button type="submit" class="btn btn-primary w-100 col-6" style="border:none;height:70px;color:black;background-color:#F2F0F0; font-size:16px;text-align:center;">Adauga serviciu</button>
                         </div>
                     </div>
-                    <a href="{{ route('show_homepage') }}" class="col-12" style="text-decoration:none;text-align:center;background-color: transparent;font-size:12px; border: none; outline:none; color:white">
-                        Renunta
-                    </a>
                 </div>
 
             </form>
@@ -107,28 +90,6 @@
                 menu_container.removeClass('d-block');
                 menu_container.addClass('d-none');
             }
-        });
-
-        $(function () {
-            $("#vetSelect").on("change", function() {
-                let services = JSON.parse('{!! $services !!}');
-
-                let options = services[$(this).val()];
-                $("#serviceVet").find("option").remove();
-
-                let optionDocInit = document.createElement('option');
-                $(optionDocInit).html("Please select a service");
-
-                $("#serviceVet").append(optionDocInit);
-
-                options.forEach(function (option) {
-                    let optionDoc = document.createElement("option");
-                    $(optionDoc).attr("value", option.id);
-                    $(optionDoc).html(option.name);
-
-                    $("#serviceVet").append(optionDoc);
-                })
-            });
         });
     </script>
     <div id="menu-container" class="col-1 p-0 d-none" style="width:90px;position:fixed;top:20%;border-radius:0 3px 3px 3px ; height:400px; background-color:#BF6B63;">
