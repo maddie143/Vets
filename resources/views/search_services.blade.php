@@ -118,68 +118,27 @@
         </script>
         <div class="row justify-content-center align-items-center" style="margin:5px 0;">
             <!-- Start of one object of type Service-->
+            @if ($services->count() > 0)
+                @foreach($services as $service)
+                    <div class="col-11" style="margin:5px 0;background-color: #40BA93; height:80px;border-radius:3px;">
+                        <div class="row m-0 h-100" style="" >
+                            <div class="col h-100">
+                                <div class="row m-0 h-100 align-items-center">
+                                    <span style="font-size:20px; color:white; text-align: center;">{{ $service->name }}</span>
+                                </div>
+                            </div>
+                            <div class="col d-flex justify-content-end">
+                                <div class="d-flex align-items-center h-100">
+                                    <i class="fas fa-chevron-right" style="color:white"></i>
+                                </div>
+                            </div>
 
-            <div class="col-11" style="margin:5px 0;background-color: #40BA93; height:80px;border-radius:3px;">
-                <div class="row m-0 h-100" style="" >
-                    <div class="col h-100">
-                        <div class="row m-0 h-100 align-items-center">
-                            <span style="font-size:20px; color:white; text-align: center;">Tratament pentru blana cu argint</span>
                         </div>
                     </div>
-                    <div class="col d-flex justify-content-end">
-                        <div class="d-flex align-items-center h-100">
-                            <i class="fas fa-chevron-right" style="color:white"></i>
-                        </div>
-                    </div>
+                @endforeach
+            @endif
 
-                </div>
-            </div>
-            <div class="col-11" style="margin:5px 0;background-color: #40BA93; height:80px;border-radius:3px;">
-                <div class="row m-0 h-100" style="" >
-                    <div class="col h-100">
-                        <div class="row m-0 h-100 align-items-center">
-                            <span style="font-size:20px; color:white; text-align: center;">Spalat cu sampon </span>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-end">
-                        <div class="d-flex align-items-center h-100">
-                            <i class="fas fa-chevron-right" style="color:white"></i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-11" style="margin:5px 0;background-color: #40BA93; height:80px;border-radius:3px;">
-                <div class="row m-0 h-100" style="" >
-                    <div class="col h-100">
-                        <div class="row m-0 h-100 align-items-center">
-                            <span style="font-size:20px; color:white; text-align: center;">Spalat cu sampon si spume </span>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-end">
-                        <div class="d-flex align-items-center h-100">
-                            <i class="fas fa-chevron-right" style="color:white"></i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-11" style="margin:5px 0;background-color: #40BA93; height:80px;border-radius:3px;">
-                <div class="row m-0 h-100" style="" >
-                    <div class="col h-100">
-                        <div class="row m-0 h-100 align-items-center">
-                            <span style="font-size:20px; color:white; text-align: center;">Pachet spalat+coafat+gheare+urechi</span>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-end">
-                        <div class="d-flex align-items-center h-100">
-                            <i class="fas fa-chevron-right" style="color:white"></i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-11" style="margin:5px 0;background-color: #40BA93; height:80px;border-radius:3px;">
+            {{--<div class="col-11" style="margin:5px 0;background-color: #40BA93; height:80px;border-radius:3px;">
                 <div class="row m-0 h-100" style="" >
                     <div class="col h-100">
                         <div class="row m-0 h-100 align-items-center">
@@ -193,7 +152,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div>--}}
 
 
 
