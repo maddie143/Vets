@@ -13,7 +13,7 @@ class AdministratorsTableSeeder extends Seeder
     public function run()
     {
         DB::table('administrators')->insert([
-            'user_id' => '14',
+            'user_id' => '1',
             'address' => "Eroilor 2",
             'schedule' => '12-15',
             'phone' => '0282882',
@@ -23,7 +23,7 @@ class AdministratorsTableSeeder extends Seeder
             'emergency_schedule' => '00-24',
         ]);
         DB::table('administrators')->insert([
-            'user_id' => '15',
+            'user_id' => '2',
             'address' => "Eroilor 2",
             'schedule' => '12-15',
             'phone' => '0282882',
@@ -33,7 +33,7 @@ class AdministratorsTableSeeder extends Seeder
             'emergency_schedule' => '00-24',
         ]);
         DB::table('administrators')->insert([
-            'user_id' => '16',
+            'user_id' => '3',
             'address' => "Eroilor 2",
             'schedule' => '12-15',
             'phone' => '0282882',
@@ -43,7 +43,7 @@ class AdministratorsTableSeeder extends Seeder
             'emergency_schedule' => '00-24',
         ]);
         DB::table('administrators')->insert([
-            'user_id' => '17',
+            'user_id' => '4',
             'address' => "Eroilor 2",
             'schedule' => '12-15',
             'phone' => '0282882',

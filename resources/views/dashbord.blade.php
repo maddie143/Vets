@@ -104,6 +104,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
                             <!-- Appointment -->
                             <div class="col-10" style="margin:2px 0;height:fit-content;">
                                 <div class="row m-0 justify-content-center align-items-center" style="height:100px;background-color:#40BA93">
@@ -159,6 +161,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <div id="appointments-vet-tab" class="d-none tabs row m-0 p-0 justify-content-center align-items-center">
                             <div class="col-10 d-flex justify-content-center align-items-center" style="margin:2px 0;">
                                 <h5 style="margin:0;"> Programari </h5>
@@ -169,59 +173,69 @@
                                 </a>
                             </div>
 
-                            <div class="col-10" style="margin:2px 0;height:fit-content;">
-                                <div class="row m-0 justify-content-center align-items-center" style="height:100px;background-color:#40BA93">
-                                    <div class="col-5">
-                                        <span>02.05.1996</span>
+                            @foreach($appointments as $appointment)
+                                <div class="col-10" style="margin:2px 0;height:fit-content;">
+                                    <div class="row m-0 justify-content-center align-items-center" style="height:100px;background-color:#40BA93">
+                                        <div class="col-5">
+                                            <span>{{ $appointment->date }}</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <h6 style="margin: 0;">{{ $appointment->service->name }}</h6>
+                                        </div>
+                                        <div class="col-2">
+                                            <button class="show_appointment_details">Show</button>
+                                        </div>
                                     </div>
-                                    <div class="col-5">
-                                        <h6 style="margin: 0;">Name Service</h6>
-                                    </div>
-                                    <div class="col-2">
-                                        <button class="show_appointment_details">Show</button>
-                                    </div>
-                                </div>
-                                <div class="row m-0 d-none appointment_details" style="border:1px solid #40BA93;padding:10px 0; ">
+                                    <div class="row m-0 d-none appointment_details" style="border:1px solid #40BA93;padding:10px 0; ">
 
-                                    <div class="col-12">
-                                        <span style="font-size:15px; font-weight: bold;">Client:</span>
-                                        <span style="font-size:17px;">Madadada</span>
-                                    </div>
-                                    <div class="col-12">
-                                        <span style="font-size:15px; font-weight: bold;">Numar telefon client:</span>
-                                        <span style="font-size:17px;">0752124</span>
-                                    </div>
-                                    <div class="col-12">
-                                        <span style="font-size:15px; font-weight: bold;">Animal:</span>
-                                        <span style="font-size:17px;">Kara</span>
-                                    </div>
-                                    <div class="col-12">
-                                        <span style="font-size:15px; font-weight: bold;">Serviciu:</span>
-                                        <span style="font-size:17px;">Tuns</span>
-                                    </div>
-                                    <div class="col-12">
-                                        <span style="font-size:15px; font-weight: bold;">Data si ora:</span>
-                                        <span style="font-size:17px;">02.07.1996 14:00</span>
-                                    </div>
-                                    <div class="col-12">
-                                        <span style="font-size:15px; font-weight: bold;">Medic</span>
-                                        <span style="font-size:17px;">Pop</span>
-                                    </div>
-                                    <div class="col-12">
-                                        <span style="font-size:15px; font-weight: bold;">Confirmata</span>
-                                    </div>
-                                    <div class="col-10" style="height:45px;">
-                                        <div class="row m-0 h-100 ">
-                                            <button class="col-5 h-100">
-                                                Confirma
-                                            </button>
-                                            <button class="col-5 h-100">
-                                                Anuleaza
-                                            </button>
+                                        <div class="col-12">
+                                            <span style="font-size:15px; font-weight: bold;">Client:</span>
+                                            <span style="font-size:17px;">{{ $appointment->user->name }}</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <span style="font-size:15px; font-weight: bold;">Numar telefon client:</span>
+                                            <span style="font-size:17px;">{{ $appointment->user->client->phone }}</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <span style="font-size:15px; font-weight: bold;">Animal:</span>
+                                            <span style="font-size:17px;">{{ $appointment->animal->name}}</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <span style="font-size:15px; font-weight: bold;">Serviciu:</span>
+                                            <span style="font-size:17px;">{{ $appointment->service->name }}</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <span style="font-size:15px; font-weight: bold;">Data si ora:</span>
+                                            <span style="font-size:17px;">{{ date("d.m.Y, H:i:s", strtotime($appointment->date)) }}</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <span style="font-size:15px; font-weight: bold;">Medic</span>
+                                            <span style="font-size:17px;">Pop</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <span style="font-size:15px; font-weight: bold;">
+                                                @if($appointment->confirmation)
+                                                    Confirmata
+                                                @else
+                                                    Neconfirmata
+                                                @endif
+                                            </span>
+                                        </div>
+                                        <div class="col-10" style="height:45px;">
+                                            <div class="row m-0 h-100 ">
+                                                @if (! $appointment->confirmation)
+                                                    <a class="col-5 h-100" href="{{ route("confirm_appointment", ["id" => $appointment->id]) }}">
+                                                        Confirma
+                                                    </a>
+                                                @endif
+                                                <a class="col-5 h-100" href="{{ route("cancel_appointment", ["id" => $appointment->id]) }}">
+                                                    Anuleaza
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
 
 
                         </div>
@@ -231,40 +245,21 @@
                                 <h5> Servicii </h5>
                             </div>
                             <!-- Serviciu -->
-                            <div class="col-10" style="margin:2px 0;height:fit-content;">
-                                <div class="row m-0 justify-content-center align-items-center" style="height:100px;background-color:#40BA93">
-                                    <div class="col-6">
-                                        <h6 style="margin: 0">Nume serviciu</h6>
+                            @foreach($services as $service)
+                                <div class="col-10" style="margin:2px 0;height:fit-content;">
+                                    <div class="row m-0 justify-content-center align-items-center" style="height:100px;background-color:#40BA93">
+                                        <div class="col-6">
+                                            <input type="text" readonly value="{{ $service->name }}" style="width:50px;background-color: transparent; border:none; color:black" />
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" readonly value="{{ $service->pivot->price }}"  style="width:50px;background-color: transparent; border:none; color:black" />
+                                        </div>
+                                        <button id="modifyService" class="col-2" style="border:none; background-color:transparent; color:white;">Modifica</button>
+                                        <button id="deleteService" class="col-2" style="border:none; background-color:transparent; color:white;">Sterge</button>
+
                                     </div>
-                                    <div class="col-2">Pret</div>
-                                    <button class="col-2" style="border:none; background-color:transparent; color:white;">Modifica</button>
-                                    <button class="col-2" style="border:none; background-color:transparent; color:white;">Sterge</button>
-
                                 </div>
-                            </div>
-                            <div class="col-10" style="margin:2px 0;height:fit-content;">
-                                <div class="row m-0 justify-content-center align-items-center" style="height:100px;background-color:#40BA93">
-                                    <div class="col-6">
-                                        <span>Nume serviciu</span>
-                                    </div>
-                                    <div class="col-2">Pret</div>
-                                    <button class="col-2" style="border:none; background-color:transparent; color:white;">Modifica</button>
-                                    <button class="col-2" style="border:none; background-color:transparent; color:white;">Sterge</button>
-
-                                </div>
-                            </div>
-                            <div class="col-10" style="margin:2px 0;height:fit-content;">
-                                <div class="row m-0 justify-content-center align-items-center" style="height:100px;background-color:#40BA93">
-                                    <div class="col-6">
-                                        <span>Nume serviciu</span>
-                                    </div>
-                                    <div class="col-2">Pret</div>
-                                    <button class="col-2" style="border:none; background-color:transparent; color:white;">Modifica</button>
-                                    <button class="col-2" style="border:none; background-color:transparent; color:white;">Sterge</button>
-
-                                </div>
-                            </div>
-
+                            @endforeach
 
                         </div>
 

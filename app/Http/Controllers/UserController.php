@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class UserController extends Controller
     //
     public function showLoginPage(){
         if(\Auth::check()){
+
             return redirect(route('show_dashbord'));
         }
         return view('login');
@@ -61,7 +63,12 @@ class UserController extends Controller
     }
 
     public function showDashbord(){
-        return view('dashbord');
+        $appointments = \Auth::user()->admin->appointments;
+        $services = \Auth::user()->admin->services;
+        return view('dashbord',[
+            'appointments' => $appointments,
+            'services'     => $services
+        ]);
     }
     public function register(Request $request){
         $rules = array(
@@ -113,5 +120,30 @@ class UserController extends Controller
                 ]
             ]));
         }
+    }
+
+    public function confirmAppointment($id)
+    {
+        $appointment = Appointment::find($id);
+
+        if (!$appointment) {
+            abort(404);
+        }
+
+        $appointment->confirmation = true;
+        $appointment->save();
+        return back();
+    }
+
+    public function cancelAppointment($id)
+    {
+        $appointment = Appointment::find($id);
+
+        if (!$appointment) {
+            abort(404);
+        }
+
+        $appointment->delete();
+        return back();
     }
 }

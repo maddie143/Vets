@@ -14,7 +14,11 @@ class Admin extends Model
     }
 
     public function services(){
-        return $this->belongsToMany(Service::class, 'users_services', 'admin_id', 'service_id');
+        return $this->belongsToMany(Service::class, 'users_services', 'admin_id', 'service_id')->withPivot(['price']);
+    }
+
+    public function appointments(){
+        return $this->hasMany(Appointment::class, 'admin_id');
     }
 
     //

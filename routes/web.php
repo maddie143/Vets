@@ -58,3 +58,13 @@ Route::get('/vet/{id}',[
     'uses' => 'VetController@showVet',
     'as'   => 'show_vet'
 ]);
+
+Route::get('/confirm-appointment/{id}', [
+    'uses' => 'UserController@confirmAppointment',
+    'as'   => 'confirm_appointment'
+]);
+
+Route::get('/cancel-appointment/{id}', [
+    'uses' => 'UserController@cancelAppointment',
+    'as'   => 'cancel_appointment'
+]);

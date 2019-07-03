@@ -18,12 +18,12 @@ class UsersServicesTableSeeder extends Seeder
         ]);
         DB::table('users_services')->insert([
             'admin_id' => 1,
-            'service_id' => 1,
+            'service_id' => 2,
             'price' => 20
         ]);
         DB::table('users_services')->insert([
             'admin_id' => 1,
-            'service_id' => 1,
+            'service_id' => 3,
             'price' => 20
         ]);
     }
