@@ -60,33 +60,32 @@
                 <input type="hidden" name="searchName" id="filterName" />
                 <div class="row w-100 justify-content-center align-items-center m-0">
                     <div class="col-12 col-sm-11 d-flex form-group justify-content-center align-items-center" style="margin:1px 0;">
-                        <select class="custom-select-sm form-control col-8 " id="select_county" style="">
-                            <option selected>Select a county</option>
-                            <option value="1">Brasov</option>
-                            <option value="2">Cluj</option>
-                            <option value="3">Ilfov</option>
-                            <option value="4">Prahova</option>
+                        <select class="custom-select-sm form-control col-8 " id="select_county" style="" name="county">
+                            <option value="">Select a county</option>
+                            <option value="Brasov">Brasov</option>
+                            <option value="Cluj">Cluj</option>
+                            <option value="Ilfov">Ilfov</option>
+                            <option value="Prahova">Prahova</option>
                         </select>
                     </div>
                     <div class="col-12 col-sm-11  d-flex form-group justify-content-center align-items-center" style="margin:1px 0;">
-                        <select class="custom-select-sm form-control col-8 " id="select_city" style="">
-                            <option selected>Select a city</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="custom-select-sm form-control col-8 " id="select_city" style="" name="city">
+                            <option value="">Select a city</option>
+                            <option value="Cluj-Napoca">Cluj-Napoca</option>
+                            <option value="Bucuresti">Bucuresti</option>
                         </select>
                     </div>
                     <div class="col-12 col-sm-11 d-flex form-group justify-content-center align-items-center" style="margin:1px 0;">
-                        <select class="custom-select-sm form-control col-8 " id="select_service" style="">
-                            <option selected>Select a service</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="custom-select-sm form-control col-8 " id="select_service" style="" name="service">
+                            <option value="">Select a service</option>
+                            <option value="1">Serviciul 1</option>
+                            <option value="2">Serviciul 2</option>
+                            <option value="3">Serviciul 3</option>
                         </select>
                     </div>
                     <div class="col-12 col-sm-11 custom-control custom-switch d-flex form-group justify-content-center align-items-center" style="margin:1px 0;">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                        <label class="custom-control-label" for="customSwitch1" style="color:white; font-size:15px;">Does it have an emergency program?</label>
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1" name="emergency">
+                        <label class="custom-control-label" for="customSwitch1" style="color:white; font-size:15px;">Does it have an emergency department?</label>
                     </div>
                     <div class="col-12 col-sm-11 " style="padding-top:10px;">
                         <div class="row m-0 h-100 w-100 justify-content-center align-items-center">
@@ -269,6 +268,12 @@
                     $("#filterName").val($("#searchPlaceholder").val());
                     $('#filterForm').submit();
                 }
+            });
+
+            $("#filterForm").submit(function () {
+                $("#filterName").val($("#searchPlaceholder").val());
+
+                return true;
             });
         });
     </script>
