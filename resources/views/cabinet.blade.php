@@ -39,15 +39,25 @@
                 </tr>
                 <tr class="row justify-content-center align-items-center">
                     <td class="col-6 justify-content-center d-flex ">Urgente</td>
-                    <td class="col-6 justify-content-center d-flex">DA</td>
+                    <td class="col-6 justify-content-center d-flex">
+                        @if ($vet->emergency)
+                            DA
+                        @else
+                            NU
+                        @endif
+                    </td>
                 </tr>
                 <tr class="row justify-content-center align-items-center">
                     <td class="col-6 justify-content-center d-flex ">Program urgente</td>
-                    <td class="col-6 justify-content-center d-flex">12-17 PM</td>
+                    <td class="col-6 justify-content-center d-flex">
+                        {{ $vet->emergency_schedule }}
+                    </td>
                 </tr>
                 <tr class="row justify-content-center align-items-center">
                     <td class="col-6 justify-content-center d-flex ">Telefon urgente</td>
-                    <td class="col-6 justify-content-center d-flex">076767612</td>
+                    <td class="col-6 justify-content-center d-flex">
+                        {{ $vet->phone }} / {{ $vet->phoneF }}
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -59,31 +69,31 @@
             </tr>
             <tr class="row justify-content-center align-items-center">
                 <td class="col-6 justify-content-center d-flex ">Oras</td>
-                <td class="col-6 justify-content-center d-flex">DA</td>
+                <td class="col-6 justify-content-center d-flex">{{ $vet->user->city }}</td>
             </tr>
             <tr class="row justify-content-center align-items-center">
                 <td class="col-6 justify-content-center d-flex ">Judet</td>
-                <td class="col-6 justify-content-center d-flex">judet</td>
+                <td class="col-6 justify-content-center d-flex">{{ $vet->user->county }}</td>
             </tr>
             <tr class="row justify-content-center align-items-center">
                 <td class="col-6 justify-content-center d-flex ">Adresa</td>
-                <td class="col-6 justify-content-center d-flex">Eroilor 12</td>
+                <td class="col-6 justify-content-center d-flex">{{ $vet->address }}</td>
             </tr>
             <tr class="row justify-content-center align-items-center">
                 <td class="col-6 justify-content-center d-flex ">Program</td>
-                <td class="col-6 justify-content-center d-flex">12-19 PM</td>
+                <td class="col-6 justify-content-center d-flex">{{ $vet->schedule }}</td>
             </tr>
             <tr class="row justify-content-center align-items-center">
                 <td class="col-6 justify-content-center d-flex ">Telefon</td>
-                <td class="col-6 justify-content-center d-flex">443434343</td>
+                <td class="col-6 justify-content-center d-flex">{{ $vet->phone }}</td>
             </tr>
             <tr class="row justify-content-center align-items-center">
                 <td class="col-6 justify-content-center d-flex ">Telefon fix</td>
-                <td class="col-6 justify-content-center d-flex">076767612</td>
+                <td class="col-6 justify-content-center d-flex">{{ $vet->phoneF }}</td>
             </tr>
             <tr class="row justify-content-center align-items-center">
                 <td class="col-6 justify-content-center d-flex ">Nume firma</td>
-                <td class="col-6 justify-content-center d-flex">Firma SRL</td>
+                <td class="col-6 justify-content-center d-flex">{{ $vet->firm_name }}</td>
             </tr>
             </tbody>
         </table>
@@ -100,31 +110,16 @@
 
                 </tr>
             </thead>
+
             <tbody class="col-8" style="border-bottom:1px solid black; padding:10px 0;">
-                <tr class="row justify-content-center align-items-center">
-                    <td class="col-6 justify-content-center d-flex ">Tuns</td>
-                    <td class="col-6 justify-content-center d-flex">25 LEI</td>
-                </tr>
-                <tr class="row justify-content-center align-items-center">
-                    <td class="col-6 justify-content-center d-flex ">Tuns</td>
-                    <td class="col-6 justify-content-center d-flex">25 LEI</td>
-                </tr>
-                <tr class="row justify-content-center align-items-center">
-                    <td class="col-6 justify-content-center d-flex ">Tuns</td>
-                    <td class="col-6 justify-content-center d-flex">25 LEI</td>
-                </tr>
-                <tr class="row justify-content-center align-items-center">
-                    <td class="col-6 justify-content-center d-flex ">Tuns</td>
-                    <td class="col-6 justify-content-center d-flex">25 LEI</td>
-                </tr>
-                <tr class="row justify-content-center align-items-center">
-                    <td class="col-6 justify-content-center d-flex ">Tuns</td>
-                    <td class="col-6 justify-content-center d-flex">25 LEI</td>
-                </tr>
-                <tr class="row justify-content-center align-items-center">
-                    <td class="col-6 justify-content-center d-flex ">Tuns</td>
-                    <td class="col-6 justify-content-center d-flex">25 LEI</td>
-                </tr>
+                @if ($vet->services->count() > 0)
+                    @foreach ($vet->services as $service)
+                        <tr class="row justify-content-center align-items-center">
+                            <td class="col-6 justify-content-center d-flex ">{{ $service->name }}</td>
+                            <td class="col-6 justify-content-center d-flex">{{ $service->pivot->price }} LEI</td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
 
         </table>

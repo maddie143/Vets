@@ -54,7 +54,7 @@ Route::get('/appointment', [
     'as'   => 'add_appointment'
 ]);
 
-Route::get('/vet',[
+Route::get('/vet/{id}',[
     'uses' => 'VetController@showVet',
     'as'   => 'show_vet'
 ]);

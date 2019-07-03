@@ -214,7 +214,7 @@
 
                     </div>
                     <div class="col d-flex justify-content-end">
-                        <a href="{{ route('show_vet') }}" class="d-flex align-items-center h-100">
+                        <a href="{{ route('show_vet', ["id" => $vet->id]) }}" class="d-flex align-items-center h-100">
                             <i class="fas fa-chevron-right" style="color:white"></i>
                         </a>
                     </div>

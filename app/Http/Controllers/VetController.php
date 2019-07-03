@@ -11,8 +11,16 @@ use Illuminate\Http\Request;
 
 class VetController extends Controller
 {
-    public function showVet(){
-        return view('cabinet');
+    public function showVet($id){
+        $vet = Admin::find($id);
+
+        if (!$vet) {
+            abort(404);
+        }
+
+        return view('cabinet', [
+            'vet' => $vet
+        ]);
     }
     public function showAllVetPage(Request $request, Admin $model){
         $search = $request->get('searchName');
