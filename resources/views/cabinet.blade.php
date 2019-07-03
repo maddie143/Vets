@@ -25,8 +25,8 @@
 
 </head>
 <body>
-<div class="row container-fluid m-0 p-0 " style="position:relative;background-color:#F2F0F0; height:100vh">
-    <div class="col-12 p-0 first-impact " style="height: 100vh;">
+<div class="row container-fluid m-0 p-0" style="position:relative;background-color:#F2F0F0;">
+    <div class="col-12 p-0 first-impact " style="margin:20px 0;">
         <div class="row m-0 p-0 w-100 justify-content-center align-items-center">
             <div class="col-8 d-flex justify-content-center align-items-center" style="padding:10px;border-bottom:1px solid black;">
                 <h2>Cabinet name</h2>
@@ -98,7 +98,6 @@
             </tbody>
         </table>
 
-
         <table id="servicii" class="row m-0 p-0 justify-content-center align-items-center">
             <thead class="col-8">
                 <tr class="row justify-content-center align-items-center">
@@ -123,6 +122,11 @@
             </tbody>
 
         </table>
+        <div class="row m-0 p-0 justify-content-center align-items-center" style="">
+            <a href="{{ route('add_appointment') }}" class="h-100" style="height:100px; padding:10px 20px;background-color:#40BA93; color:white; text-decoration: none;">
+                Adauga programare
+            </a>
+        </div>
 
 
 

@@ -14,7 +14,7 @@ class AnimalTableSeeder extends Seeder
         DB::table('animals')->insert([
            'client_id' => 1,
             'name' => 'Animal 1',
-            'date_of_birth' => '02/06/2017',
+            'date_of_birth' => new DateTime('2017-04-04'),
             'gender' => 'female',
             'specie_id' => 1,
             'race_id' => 1,
@@ -25,7 +25,7 @@ class AnimalTableSeeder extends Seeder
         DB::table('animals')->insert([
            'client_id' => 2,
             'name' => 'Animal 2',
-            'date_of_birth' => '02/06/2017',
+            'date_of_birth' => new DateTime('2017-04-04'),
             'gender' => 'female',
             'specie_id' => 1,
             'race_id' => 1,
@@ -36,7 +36,7 @@ class AnimalTableSeeder extends Seeder
         DB::table('animals')->insert([
            'client_id' => 2,
             'name' => 'Animal 3',
-            'date_of_birth' => '02/06/2017',
+            'date_of_birth' => new DateTime('2017-04-04'),
             'gender' => 'female',
             'specie_id' => 1,
             'race_id' => 1,

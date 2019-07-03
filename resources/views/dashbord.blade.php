@@ -159,6 +159,72 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="appointments-vet-tab" class="d-none tabs row m-0 p-0 justify-content-center align-items-center">
+                            <div class="col-10 d-flex justify-content-center align-items-center" style="margin:2px 0;">
+                                <h5 style="margin:0;"> Programari </h5>
+                            </div>
+                            <div class="col-10 d-flex justify-content-center align-items-center" style="margin:2px 0;">
+                                <a href="{{ route('add_appointment') }}" style="background-color: transparent; border:none; outline:none; color:#D96C6C">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
+
+                            <div class="col-10" style="margin:2px 0;height:fit-content;">
+                                <div class="row m-0 justify-content-center align-items-center" style="height:100px;background-color:#40BA93">
+                                    <div class="col-5">
+                                        <span>02.05.1996</span>
+                                    </div>
+                                    <div class="col-5">
+                                        <h6 style="margin: 0;">Name Service</h6>
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="show_appointment_details">Show</button>
+                                    </div>
+                                </div>
+                                <div class="row m-0 d-none appointment_details" style="border:1px solid #40BA93;padding:10px 0; ">
+
+                                    <div class="col-12">
+                                        <span style="font-size:15px; font-weight: bold;">Client:</span>
+                                        <span style="font-size:17px;">Madadada</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="font-size:15px; font-weight: bold;">Numar telefon client:</span>
+                                        <span style="font-size:17px;">0752124</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="font-size:15px; font-weight: bold;">Animal:</span>
+                                        <span style="font-size:17px;">Kara</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="font-size:15px; font-weight: bold;">Serviciu:</span>
+                                        <span style="font-size:17px;">Tuns</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="font-size:15px; font-weight: bold;">Data si ora:</span>
+                                        <span style="font-size:17px;">02.07.1996 14:00</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="font-size:15px; font-weight: bold;">Medic</span>
+                                        <span style="font-size:17px;">Pop</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="font-size:15px; font-weight: bold;">Confirmata</span>
+                                    </div>
+                                    <div class="col-10" style="height:45px;">
+                                        <div class="row m-0 h-100 ">
+                                            <button class="col-5 h-100">
+                                                Confirma
+                                            </button>
+                                            <button class="col-5 h-100">
+                                                Anuleaza
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
 
                         <div id="services-tab" class="tabs row m-0 p-0 justify-content-center align-items-center">
                             <div class="col-10 d-flex justify-content-center align-items-center" style="margin:2px 0;">
@@ -514,6 +580,13 @@
                                 tabs.removeClass('d-flex');
                                 tabs.addClass('d-none');
                                 let appointments = $('#appointments-tab');
+                                appointments.addClass('d-flex');
+                                appointments.removeClass('d-none');
+                            });
+                            $("#appointment-vet-button").click(function(){
+                                tabs.removeClass('d-flex');
+                                tabs.addClass('d-none');
+                                let appointments = $('#appointments-vet-tab');
                                 appointments.addClass('d-flex');
                                 appointments.removeClass('d-none');
                             });
