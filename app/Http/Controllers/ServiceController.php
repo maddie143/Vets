@@ -24,6 +24,7 @@ class ServiceController extends Controller
         ]);
     }
     public function showAddAppointmentPage(){
+
         $vets = Admin::all();
 
         $services = [];

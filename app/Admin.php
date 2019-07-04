@@ -13,6 +13,7 @@ class Admin extends Model
         return $this->hasOne(User::class, 'id');
     }
 
+
     public function services(){
         return $this->belongsToMany(Service::class, 'users_services', 'admin_id', 'service_id')->withPivot(['price']);
     }

@@ -109,4 +109,16 @@ Route::get('/emergency',[
     'as'   => 'show_emergency'
 ]);
 
+Route::get('/add-animal',[
+   'uses' => 'UserController@addAnimalPage',
+   'as'   => 'add_animal'
+]);
+Route::post('/add-animal',[
+   'uses' => 'UserController@addAnimalProcess',
+   'as'   => 'add_animal_process'
+]);
+Route::get('/delete-animal/{i}',[
+    'uses' => 'UserController@deleteAnimal',
+    'as'   => 'delete_animal'
+]);
 

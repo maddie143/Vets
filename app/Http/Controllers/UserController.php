@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Animal;
 use App\Appointment;
 use App\Client;
+use App\Race;
 use App\Service;
+use App\Specie;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -301,6 +304,47 @@ class UserController extends Controller
 
         $admin->save();
         return redirect(route('show_dashbord'));
+    }
+
+
+    public function addAnimalPage(){
+        $species = Specie::all();
+        $races = Race::all();
+        return view('animals',[
+            'species' => $species,
+            'races'   => $races
+        ]);
+    }
+    public function deleteAnimal($id){
+        $animal = Animal::find($id);
+
+        $animal->delete();
+        return redirect(route('show_dashbord'));
+    }
+    public function addAnimalProcess(){
+        $animal = new \App\Animal();
+        $animal->client_id = \Auth::user()->client->id;
+        $animal->name = (!is_null(Input::get("name"))) ? Input::get("name") : "";
+        $animal->date_of_birth = (!is_null(Input::get("data"))) ? Input::get("data") : "";
+        $animal->gender = (!is_null(Input::get("gender"))) ? Input::get("gender") : "";
+
+
+        $animal->specie_id = Input::get('specie');
+
+
+        $animal->race_id = Input::get("race");
+        $animal->color = (!is_null(Input::get("color"))) ? Input::get("color") : "";
+        $animal->particular_signs = (!is_null(Input::get("particular_signs"))) ? Input::get("particular_signs") : "";
+        $animal->identification_code = (!is_null(Input::get("identification_code"))) ? Input::get("identification_code") : "";
+
+        try{
+            $animal->save();
+            return redirect(route('show_dashbord'));
+        }
+        catch(Exception $e){
+            echo "eroare";
+        }
+        return redirect(route('add_animal'));
     }
 
 

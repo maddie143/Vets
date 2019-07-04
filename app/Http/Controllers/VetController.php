@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\City;
+use App\County;
 use App\Http\Commands\FilterByCity;
 use App\Http\Commands\FilterByCounty;
 use App\Http\Commands\FilterByEmergency;
@@ -54,6 +56,7 @@ class VetController extends Controller
     }
 
     public function showEmergency(){
+
         $vets = Admin::where('emergency',true)->get();
         return view('emergency',[
             'vets' => $vets
